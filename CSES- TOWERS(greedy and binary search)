@@ -1,0 +1,60 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+#define yes cout << "YES" << "\n"
+#define no cout << "NO" << "\n"
+#define next "\n"
+#define int long long int
+#define fori for (int i = 0; i < n; i++)
+#define forj for (int j = 0; j < n; j++)
+#define vv vector<int>v
+
+
+const int INF = INT_MAX;
+const int N = 1000;
+const int MOD = 1000000007;
+
+void solve()
+{
+
+    int n;
+    cin>>n;
+    vector<int>a(n);
+    for(int i=0;i<n;i++){
+        cin>>a[i];
+    }
+    int cnt  = 0;
+    vector<int>u;
+    for(int i=0;i<n;i++){
+        auto it = upper_bound(u.begin(),u.end(),a[i]);
+        if(it == u.end()){
+            u.push_back(a[i]);
+        }
+        else{
+            *it = a[i];
+        }
+    }
+    cout<<u.size()<<next;
+}
+
+int32_t main()
+{
+    ios::sync_with_stdio(false);
+    cin.tie(NULL);
+    cout.tie(NULL);
+
+    int t=1;
+    //cin >> t;
+    while (t--)
+    {
+        solve();
+    }
+
+    return 0;
+}
+
+
+//here, the brute force way is to for every number, find it's smaller ones and repeat, but this will give you a O(n^2)
+//complexity. So instead, we will take another vector U, and for every element we find it's upper bound, which is the valu just bigger than
+the value it self, in the U vector, since u is the vector for towers. So for ecvery number, we see if there's any
+existing tower, if not, we create a new tower, if so, we use the pointer to lead the next to the already existing towwer.

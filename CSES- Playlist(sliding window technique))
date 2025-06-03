@@ -1,0 +1,60 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+#define yes cout << "YES" << "\n"
+#define no cout << "NO" << "\n"
+#define next "\n"
+#define int long long int
+#define fori for (int i = 0; i < n; i++)
+#define forj for (int j = 0; j < n; j++)
+#define vv vector<int>v
+
+
+const int INF = INT_MAX;
+const int N = 1000;
+const int MOD = 1000000007;
+
+void solve()
+{
+
+    int n;
+    cin>>n;
+    int a[n];
+    for(int i=0;i<n;i++){
+        cin>>a[i];
+    }
+    int cnt  = 0;
+    int original = 0;
+    set<int>st;
+    int l=0,r=0;
+    while(r<n){
+        if(!st.count(a[r])){
+            st.insert(a[r]);
+            cnt = max(cnt, r-l+1);
+            r++;
+        }
+        else{
+            while(st.count(a[r])){
+                st.erase(a[l]);
+                l++;
+            }
+        }
+    }
+    cout<<cnt<<next;
+}
+
+int32_t main()
+{
+    ios::sync_with_stdio(false);
+    cin.tie(NULL);
+    cout.tie(NULL);
+
+    int t=1;
+    //cin >> t;
+    while (t--)
+    {
+        solve();
+    }
+
+    return 0;
+}

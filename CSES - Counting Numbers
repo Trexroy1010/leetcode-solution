@@ -1,0 +1,63 @@
+#include <bits/stdc++.h>
+using namespace std;
+ 
+#define yes cout << "YES" << "\n"
+#define no cout << "NO" << "\n"
+#define next "\n"
+#define int long long int
+#define fori for (int i = 0; i < n; i++)
+#define forj for (int j = 0; j < n; j++)
+#define vv vector<int>v
+ 
+ 
+const int INF = INT_MAX;
+const int N = 1000;
+const int MOD = 1000000007;
+ 
+void solve()
+{
+ 
+    int n;
+    cin>>n;
+    int a[n];
+    for(int i=0;i<n;i++){
+        cin>>a[i];
+    }
+    int cnt = 1;
+    map<int,int>mp;
+    for(int i=0;i<n;i++){
+        mp[a[i]] = i;
+    }
+    vector<int>v;
+    for(auto i:mp){
+        v.push_back(i.second);
+    }
+    for(int i=0;i<n-1;i++){
+        if(v[i]<v[i+1]){
+            continue;
+        }
+        else{
+            cnt++;
+        }
+    }
+    cout<<cnt<<next;
+}
+ 
+int32_t main()
+{
+    ios::sync_with_stdio(false);
+    cin.tie(NULL);
+    cout.tie(NULL);
+ 
+    int t=1;
+    //cin >> t;
+    while (t--)
+    {
+        solve();
+    }
+ 
+    return 0;
+}
+
+
+//basically check whether the position of each number is going downward instead of the numbers themselve

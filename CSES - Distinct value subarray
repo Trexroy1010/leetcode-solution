@@ -1,0 +1,58 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+#define yes cout << "YES" << "\n"
+#define no cout << "NO" << "\n"
+#define next "\n"
+
+#define fori for (int i = 0; i < n; i++)
+#define forj for (int j = 0; j < n; j++)
+#define vv vector<int>v
+
+
+const int N = 2e5 + 5;
+const int MOD = 1e9 + 7;
+
+void solve()
+{
+
+    int n;
+    cin>>n;
+    vector<int>a(n);
+    for(int i=0;i<n;i++){
+        cin>>a[i];
+    }
+    set<int>st;
+    long long cnt  =0;
+    int left = 0;
+    for(int i = 0;i<n;i++){
+        while(st.count(a[i])){
+            st.erase(a[left]);
+            left++;
+        }
+        st.insert(a[i]);
+        cnt += (i - left + 1);
+    }
+    cout<<cnt<<next;
+}
+
+int32_t main()
+{
+    ios::sync_with_stdio(false);
+    cin.tie(NULL);
+    cout.tie(NULL);
+
+    int t=1;
+    //cin >> t;
+    while (t--)
+    {
+        solve();
+    }
+
+    return 0;
+}
+
+
+
+//my first thought was to just use the ncr formula to find out all the combination, but realized that it wouldn't work.
+ltaer i realized that all i needed was the sliding window algorithjm. As we travers forward, we check if this value is already in the set and if ot is, we delete. if not we add that value to the set and then count the combination

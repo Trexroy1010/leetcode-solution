@@ -1,0 +1,65 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+#define yes cout << "YES" << "\n"
+#define no cout << "NO" << "\n"
+#define next "\n"
+
+const int N = 1e5 + 5;
+const int MOD = 1e9 + 7;
+//vector<int>g[N]
+
+long long produced(long long time, const vector<int> &a) {
+    long long total = 0;
+    for (int m : a) {
+        total += time / m;
+        if (total >= 1e18) return 1e18;
+    }
+    return total;
+}
+
+void solve() {
+    int m, n;
+    cin >> m >> n;
+    vector<int> v(m);
+    int f = INT_MAX;
+
+    for (int i = 0; i < m; i++) {
+        cin >> v[i];
+        f = min(f, v[i]);
+    }
+
+    long long lo = 0, hi = 1LL * f * n;
+    while (lo < hi) {
+        long long mid = lo + (hi - lo) / 2;
+        if (produced(mid, v) >= n)
+            hi = mid;
+        else
+            lo = mid + 1;
+    }
+
+    cout << lo << next;
+}
+
+
+int32_t main()
+{
+    ios::sync_with_stdio(false);
+    cin.tie(NULL);
+    cout.tie(NULL);
+
+    int t=1;
+    //cin >> t;
+    while (t--)
+    {
+        solve();
+    }
+
+    return 0;
+}
+
+
+
+//if i need a work to be done in t minutes and i have 10 machine, on average each machiene would do 1/t for all 10 machine, sum(T / t[0] + T / t[1] + ... + T / t[m-1])., but since we are doing one task at a time, tje fraction wouldn't work.
+//why r we using binary search? Because, with the lowest time consuming machiene, we are trying to find out whether we can complete a job, if we can, we just need to find out another machine that can do it with lower amount of time. If not, we find another machine taht can do this work in relatively similar time. 
+//This is why we are using the binary search. And the produced funtion finds out how many we are producing in time for each machine

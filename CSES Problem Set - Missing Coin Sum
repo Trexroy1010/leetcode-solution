@@ -1,0 +1,53 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+#define yes cout << "YES" << "\n"
+#define no cout << "NO" << "\n"
+#define next "\n"
+
+const int N = 1e5 + 5;
+const int MOD = 1e9 + 7;
+//vector<int>g[N]
+
+
+void solve() {
+    int n;
+    cin >> n;
+    vector<int>v(n);
+    for(int i=0;i<n;i++){
+        cin>>v[i];
+    }
+    long long int sum = 1;
+    sort(v.begin(), v.end());
+    for(int i=0;i<n;i++){
+        if(sum<v[i]){
+            break;
+        }
+        else{
+            sum+=v[i];
+        }
+    }
+    cout<<sum<<next;
+}
+
+
+
+int32_t main()
+{
+    ios::sync_with_stdio(false);
+    cin.tie(NULL);
+    cout.tie(NULL);
+
+    int t=1;
+    //cin >> t;
+    while (t--)
+    {
+        solve();
+    }
+
+    return 0;
+}
+
+
+//since the question says that there are some positive value coins, the minimum sum we can get is 1. So for each numbr, we just have to check whether we have a coin that is greater than the current sum we have, if so, we cannot create the current sum, or else we just += v[i};
+//reasoning, lets say, 1 2 3 4 5.. so sum = 1, 1==1, so 1+1 = 2, 2==2 and continue. but if it was 1,3,4,5,6... sum = 1, 1==1, so sum = 2, but now 3>2, so we cannot create a sum of 2, since we have only one 1.

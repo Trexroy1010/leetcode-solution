@@ -1,0 +1,48 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+#define yes cout << "YES" << "\n"
+#define no cout << "NO" << "\n"
+#define next "\n"
+
+void solve()
+{
+    int n;
+    cin >> n;
+    queue<int>q;
+    vector<int>result;
+    for(int i=1;i<=n;i++){
+        q.push(i);
+
+    }
+    while(!q.empty()){
+        int k = q.front();q.pop();
+        q.push(k);
+
+        int m = q.front();q.pop();
+        result.push_back(m);
+    }
+    for(auto i : result){
+        cout<<i<<" ";
+    }
+    cout<<next;
+}
+
+int32_t main()
+{
+    ios::sync_with_stdio(false);
+    cin.tie(NULL);
+    cout.tie(NULL);
+
+    int t = 1;
+    // cin >> t;
+    while (t--) {
+        solve();
+    }
+
+    return 0;
+}
+
+//search for josephus problem if you don't. Basically u skip n numbers and then select one, and since the number is ot specified here, we just assume we skip one, and for that, 
+we put everything on the quue. we skip the first value, pop it, and then insert it again at the end, after that we take the second value, and then print it dirctly or just put int in a
+vector to print later. 

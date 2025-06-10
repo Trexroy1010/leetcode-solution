@@ -1,0 +1,24 @@
+class Solution {
+public:
+    void generateparenthesis(int n, int open, int close, string current, vector<string>&result){
+        if(current.length()==n*2){
+            result.push_back(current);
+            return;
+        }
+
+        if(open<n){
+            generateparenthesis(n,open+1,close,current + "(", result);
+        }
+        if(close<open){
+            generateparenthesis(n,open,close+1,current+")", result);
+        }
+    }
+    vector<string> generateParenthesis(int n) {
+        vector<string>result;
+        generateparenthesis(n,0,0,"",result);
+        return result;
+    }
+};
+
+
+//what we did here is used dp and recursive function to call the function again and again to perform the sameoperation, until everything is satisfied..

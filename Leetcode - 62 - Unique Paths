@@ -1,0 +1,15 @@
+class Solution {
+public:
+    int uniquePaths(int m, int n) {
+        long long int sum = 1;
+    for(int i=1;i<m;i++){
+        sum = sum * (n-1 +i)/i;
+    }
+    return sum;
+    }
+};
+
+
+//uses the dipodi bristiti sutro to calculate the unique moves.
+we can have a max of m-1 downward and n-1 rightward move for each move, so the total move will be (m-1+n-1) = (m+n-2) moves, from which we need to find the uniquye numbers.
+so we use nCr, but (m+n-2)C(m-1), we can also use (m+n-2)C(n-1)
